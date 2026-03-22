@@ -25,6 +25,7 @@
     "publishConfig": {
         "access": "public"
     },
+    "sideEffects": false,
     "types": "./dist/esm/index.d.ts",
     "exports": {
         ".": {
