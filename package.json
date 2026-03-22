@@ -4,12 +4,12 @@
     "description": "Lightweight stdio-focused Model Context Protocol SDK for TypeScript",
     "license": "MIT",
     "author": "ContextVM",
-    "homepage": "https://github.com/ContextVM-org/mcp-sdk",
-    "bugs": "https://github.com/ContextVM-org/mcp-sdk/issues",
+    "homepage": "https://github.com/ContextVM/mcp-sdk",
+    "bugs": "https://github.com/ContextVM/mcp-sdk/issues",
     "type": "module",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ContextVM-org/mcp-sdk.git"
+        "url": "git+https://github.com/ContextVM/mcp-sdk.git"
     },
     "engines": {
         "node": ">=18"
