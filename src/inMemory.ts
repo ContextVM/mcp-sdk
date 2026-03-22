@@ -1,6 +1,6 @@
 import { Transport } from './shared/transport.js';
 import { JSONRPCMessage, RequestId } from './types.js';
-import { AuthInfo } from './server/auth/types.js';
+import { AuthInfo } from './shared/auth-info.js';
 
 interface QueuedMessage {
     message: JSONRPCMessage;

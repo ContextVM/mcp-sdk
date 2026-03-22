@@ -1,5 +1,5 @@
 import * as z from 'zod/v4';
-import { AuthInfo } from './server/auth/types.js';
+import { AuthInfo } from './shared/auth-info.js';
 
 export const LATEST_PROTOCOL_VERSION = '2025-11-25';
 export const DEFAULT_NEGOTIATED_PROTOCOL_VERSION = '2025-03-26';
