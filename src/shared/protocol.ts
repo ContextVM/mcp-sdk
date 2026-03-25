@@ -265,7 +265,7 @@ export type RequestHandlerExtra<SendRequestT extends Request, SendNotificationT 
 
     taskStore?: RequestTaskStore;
 
-    taskRequestedTtl?: number | null;
+    taskRequestedTtl?: number;
 
     /**
      * The original HTTP request.
@@ -647,6 +647,11 @@ export abstract class Protocol<SendRequestT extends Request, SendNotificationT e
         this._progressHandlers.clear();
         this._taskProgressTokens.clear();
         this._pendingDebouncedNotifications.clear();
+
+        for (const info of this._timeoutInfo.values()) {
+            clearTimeout(info.timeoutId);
+        }
+        this._timeoutInfo.clear();
 
         // Abort all in-flight request handlers so they stop sending messages
         for (const controller of this._requestHandlerAbortControllers.values()) {

@@ -487,11 +487,9 @@ describe('InMemoryTaskStore', () => {
             expect(task).toBeNull();
         });
 
-        it('should support null TTL for unlimited lifetime', async () => {
-            // Test that null TTL means unlimited lifetime
-            const taskParams: TaskCreationParams = {
-                ttl: null
-            };
+        it('should support omitted TTL for unlimited lifetime', async () => {
+            // Test that omitting TTL means unlimited lifetime
+            const taskParams: TaskCreationParams = {};
             const createdTask = await store.createTask(taskParams, 2222, {
                 method: 'tools/call',
                 params: {}

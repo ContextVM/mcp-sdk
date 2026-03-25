@@ -2159,6 +2159,31 @@ describe.each(zodTestMatrix)('$zodVersionLabel', (entry: ZodMatrixEntry) => {
             expect(notifications).toHaveLength(0);
         });
 
+        test('should reject plain JSON Schema objects passed as inputSchema', () => {
+            const mcpServer = new McpServer({
+                name: 'test server',
+                version: '1.0'
+            });
+
+            const jsonSchema = {
+                type: 'object',
+                properties: {
+                    directory_id: {
+                        type: 'string',
+                        format: 'uuid',
+                        description: 'The UUID of the directory'
+                    }
+                },
+                required: ['directory_id']
+            };
+
+            expect(() =>
+                mcpServer.tool('bad-tool', 'Invalid schema test', jsonSchema as never, async () => ({
+                    content: [{ type: 'text', text: 'Should not register' }]
+                }))
+            ).toThrow(/expected a Zod schema or ToolAnnotations|inputSchema must be a Zod schema or raw shape/);
+        });
+
         /***
          * Test: Update Resource Template
          */

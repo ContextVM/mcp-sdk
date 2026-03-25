@@ -1,6 +1,6 @@
 {
     "name": "@contextvm/mcp-sdk",
-    "version": "1.27.1",
+    "version": "1.28.0",
     "description": "Lightweight stdio-focused Model Context Protocol SDK for TypeScript",
     "license": "MIT",
     "author": "ContextVM",

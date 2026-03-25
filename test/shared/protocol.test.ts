@@ -5556,3 +5556,53 @@ describe('Error handling for missing resolvers', () => {
         });
     });
 });
+
+describe('_onclose cleanup', () => {
+    let protocol: Protocol<Request, Notification, Result>;
+    let transport: MockTransport;
+    let sendSpy: MockInstance;
+
+    beforeEach(() => {
+        vi.useFakeTimers();
+        transport = new MockTransport();
+        sendSpy = vi.spyOn(transport, 'send');
+        protocol = new (class extends Protocol<Request, Notification, Result> {
+            protected assertCapabilityForMethod(): void {}
+            protected assertNotificationCapability(): void {}
+            protected assertRequestHandlerCapability(): void {}
+            protected assertTaskCapability(): void {}
+            protected assertTaskHandlerCapability(): void {}
+        })();
+    });
+
+    afterEach(() => {
+        vi.useRealTimers();
+    });
+
+    test('should clear pending timeouts in _onclose to prevent spurious cancellation after reconnect', async () => {
+        await protocol.connect(transport);
+
+        const request = { method: 'example', params: {} };
+        const mockSchema = z.object({ result: z.string() });
+
+        const requestPromise = protocol
+            .request(request, mockSchema, {
+                timeout: 60000
+            })
+            .catch(() => {
+                // expected ConnectionClosed error
+            });
+
+        expect(sendSpy).toHaveBeenCalled();
+
+        const clearTimeoutSpy = vi.spyOn(global, 'clearTimeout');
+
+        await transport.close();
+
+        expect(clearTimeoutSpy).toHaveBeenCalled();
+
+        await vi.advanceTimersByTimeAsync(60000);
+
+        await expect(requestPromise).resolves.toBeUndefined();
+    });
+});
