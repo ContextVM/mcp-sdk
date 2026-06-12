@@ -83,11 +83,6 @@
             "import": "./dist/esm/validation/ajv-provider.js",
             "require": "./dist/cjs/validation/ajv-provider.js"
         },
-        "./validation/cfworker": {
-            "types": "./dist/esm/validation/cfworker-provider.d.ts",
-            "import": "./dist/esm/validation/cfworker-provider.js",
-            "require": "./dist/cjs/validation/cfworker-provider.js"
-        },
         "./inMemory": {
             "types": "./dist/esm/inMemory.d.ts",
             "import": "./dist/esm/inMemory.js",
@@ -107,11 +102,6 @@
             "types": "./dist/esm/experimental/tasks/index.d.ts",
             "import": "./dist/esm/experimental/tasks/index.js",
             "require": "./dist/cjs/experimental/tasks/index.js"
-        },
-        "./*": {
-            "types": "./dist/esm/*.d.ts",
-            "import": "./dist/esm/*",
-            "require": "./dist/cjs/*"
         }
     },
     "typesVersions": {
@@ -146,9 +136,6 @@
             "validation/ajv": [
                 "./dist/esm/validation/ajv-provider.d.ts"
             ],
-            "validation/cfworker": [
-                "./dist/esm/validation/cfworker-provider.d.ts"
-            ],
             "inMemory": [
                 "./dist/esm/inMemory.d.ts"
             ],
@@ -160,9 +147,6 @@
             ],
             "experimental/tasks": [
                 "./dist/esm/experimental/tasks/index.d.ts"
-            ],
-            "*": [
-                "./dist/esm/*"
             ]
         }
     },
@@ -188,24 +172,18 @@
         "ajv": "^8.17.1",
         "ajv-formats": "^3.0.1",
         "cross-spawn": "^7.0.5",
-        "json-schema-typed": "^8.0.2",
         "zod": "^3.25 || ^4.0",
         "zod-to-json-schema": "^3.25.1"
     },
     "peerDependencies": {
-        "@cfworker/json-schema": "^4.1.1",
         "zod": "^3.25 || ^4.0"
     },
     "peerDependenciesMeta": {
-        "@cfworker/json-schema": {
-            "optional": true
-        },
         "zod": {
             "optional": false
         }
     },
     "devDependencies": {
-        "@cfworker/json-schema": "^4.1.1",
         "@eslint/js": "^9.39.1",
         "@types/cross-spawn": "^6.0.6",
         "@types/node": "^22.12.0",
@@ -213,16 +191,11 @@
         "eslint": "^9.8.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-n": "^17.23.1",
+        "json-schema-typed": "^8.0.2",
         "prettier": "3.6.2",
         "tsx": "^4.16.5",
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.48.1",
         "vitest": "^4.0.8"
-    },
-    "resolutions": {
-        "strip-ansi": "6.0.1"
-    },
-    "overrides": {
-        "qs": "6.14.1"
     }
 }
