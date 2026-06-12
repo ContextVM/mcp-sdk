@@ -1,6 +1,6 @@
 {
     "name": "@contextvm/mcp-sdk",
-    "version": "1.29.0",
+    "version": "1.29.1",
     "description": "Lightweight stdio-focused Model Context Protocol SDK for TypeScript",
     "license": "MIT",
     "author": "ContextVM",
@@ -73,6 +73,16 @@
             "import": "./dist/esm/server/stdio.js",
             "require": "./dist/cjs/server/stdio.js"
         },
+        "./server/mcp": {
+            "types": "./dist/esm/server/mcp.d.ts",
+            "import": "./dist/esm/server/mcp.js",
+            "require": "./dist/cjs/server/mcp.js"
+        },
+        "./shared/transport": {
+            "types": "./dist/esm/shared/transport.d.ts",
+            "import": "./dist/esm/shared/transport.js",
+            "require": "./dist/cjs/shared/transport.js"
+        },
         "./validation": {
             "types": "./dist/esm/validation/index.d.ts",
             "import": "./dist/esm/validation/index.js",
@@ -129,6 +139,12 @@
             ],
             "server/stdio": [
                 "./dist/esm/server/stdio.d.ts"
+            ],
+            "server/mcp": [
+                "./dist/esm/server/mcp.d.ts"
+            ],
+            "shared/transport": [
+                "./dist/esm/shared/transport.d.ts"
             ],
             "validation": [
                 "./dist/esm/validation/index.d.ts"
