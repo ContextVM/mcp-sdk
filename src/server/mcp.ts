@@ -1024,8 +1024,8 @@ export class McpServer {
                     annotations = rest.shift() as ToolAnnotations;
                 }
             } else if (typeof firstArg === 'object' && firstArg !== null) {
-                // ToolAnnotations values are primitives. Nested objects indicate a misplaced schema.
-                if (Object.values(firstArg).some(value => typeof value === 'object' && value !== null)) {
+                // ToolAnnotations values are primitives. Nested objects indicate a misplaced schema
+                if (Object.values(firstArg).some(v => typeof v === 'object' && v !== null)) {
                     throw new Error(`Tool ${name} expected a Zod schema or ToolAnnotations, but received an unrecognized object`);
                 }
                 annotations = rest.shift() as ToolAnnotations;

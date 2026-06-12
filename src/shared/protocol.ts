@@ -845,7 +845,11 @@ export abstract class Protocol<SendRequestT extends Request, SendNotificationT e
             )
             .catch(error => this._onerror(new Error(`Failed to send response: ${error}`)))
             .finally(() => {
-                this._requestHandlerAbortControllers.delete(request.id);
+                // Only delete if the stored controller is still ours; after close()+connect(),
+                // a new connection may have reused the same request ID with a different controller.
+                if (this._requestHandlerAbortControllers.get(request.id) === abortController) {
+                    this._requestHandlerAbortControllers.delete(request.id);
+                }
             });
     }
 
