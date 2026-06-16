@@ -64,7 +64,8 @@
         "eventsource": "catalog:runtimeClientOnly",
         "eventsource-parser": "catalog:runtimeClientOnly",
         "jose": "catalog:runtimeClientOnly",
-        "pkce-challenge": "catalog:runtimeShared"
+        "pkce-challenge": "catalog:runtimeShared",
+        "zod": "catalog:runtimeShared"
     },
     "peerDependencies": {
         "@cfworker/json-schema": "catalog:runtimeShared",
@@ -75,7 +76,7 @@
             "optional": true
         },
         "zod": {
-            "optional": true
+            "optional": false
         }
     },
     "devDependencies": {
@@ -85,7 +86,6 @@
         "@modelcontextprotocol/eslint-config": "workspace:^",
         "@modelcontextprotocol/test-helpers": "workspace:^",
         "@cfworker/json-schema": "catalog:runtimeShared",
-        "zod": "catalog:runtimeShared",
         "@types/content-type": "catalog:devTools",
         "@types/cross-spawn": "catalog:devTools",
         "@types/eventsource": "catalog:devTools",
