@@ -495,6 +495,9 @@ importers:
       pkce-challenge:
         specifier: catalog:runtimeShared
         version: 5.0.1
+      zod:
+        specifier: catalog:runtimeShared
+        version: 4.3.5
     devDependencies:
       '@cfworker/json-schema':
         specifier: catalog:runtimeShared
@@ -556,11 +559,21 @@ importers:
       vitest:
         specifier: catalog:devTools
         version: 4.0.16(@types/node@24.10.4)(tsx@4.21.0)(yaml@2.8.2)
+
+  packages/core:
+    dependencies:
+      ajv:
+        specifier: catalog:runtimeShared
+        version: 8.17.1
+      ajv-formats:
+        specifier: catalog:runtimeShared
+        version: 3.0.1(ajv@8.17.1)
+      json-schema-typed:
+        specifier: catalog:runtimeShared
+        version: 8.0.2
       zod:
         specifier: catalog:runtimeShared
         version: 4.3.5
-
-  packages/core:
     devDependencies:
       '@cfworker/json-schema':
         specifier: catalog:runtimeShared
@@ -598,12 +611,6 @@ importers:
       '@typescript/native-preview':
         specifier: catalog:devTools
         version: 7.0.0-dev.20260105.1
-      ajv:
-        specifier: catalog:runtimeShared
-        version: 8.17.1
-      ajv-formats:
-        specifier: catalog:runtimeShared
-        version: 3.0.1(ajv@8.17.1)
       eslint:
         specifier: catalog:devTools
         version: 9.39.2
@@ -613,9 +620,6 @@ importers:
       eslint-plugin-n:
         specifier: catalog:devTools
         version: 17.23.1(eslint@9.39.2)(typescript@5.9.3)
-      json-schema-typed:
-        specifier: catalog:runtimeShared
-        version: 8.0.2
       prettier:
         specifier: catalog:devTools
         version: 3.6.2
@@ -631,9 +635,6 @@ importers:
       vitest:
         specifier: catalog:devTools
         version: 4.0.16(@types/node@24.10.4)(tsx@4.21.0)(yaml@2.8.2)
-      zod:
-        specifier: catalog:runtimeShared
-        version: 4.3.5
 
   packages/middleware/express:
     dependencies:
@@ -801,6 +802,10 @@ importers:
         version: 4.0.16(@types/node@24.10.4)(tsx@4.21.0)(yaml@2.8.2)
 
   packages/server:
+    dependencies:
+      zod:
+        specifier: catalog:runtimeShared
+        version: 4.3.5
     devDependencies:
       '@cfworker/json-schema':
         specifier: catalog:runtimeShared
@@ -862,9 +867,6 @@ importers:
       vitest:
         specifier: catalog:devTools
         version: 4.0.16(@types/node@24.10.4)(tsx@4.21.0)(yaml@2.8.2)
-      zod:
-        specifier: catalog:runtimeShared
-        version: 4.3.5
 
   test/conformance:
     devDependencies:

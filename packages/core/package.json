@@ -30,29 +30,22 @@
         "server": "tsx watch --clear-screen=false scripts/cli.ts server",
         "client": "tsx scripts/cli.ts client"
     },
-    "dependencies": {},
-    "peerDependencies": {
-        "@cfworker/json-schema": "catalog:runtimeShared",
+    "dependencies": {
         "ajv": "catalog:runtimeShared",
         "ajv-formats": "catalog:runtimeShared",
         "json-schema-typed": "catalog:runtimeShared",
+        "zod": "catalog:runtimeShared"
+    },
+    "peerDependencies": {
+        "@cfworker/json-schema": "catalog:runtimeShared",
         "zod": "catalog:runtimeShared"
     },
     "peerDependenciesMeta": {
         "@cfworker/json-schema": {
             "optional": true
         },
-        "ajv": {
-            "optional": true
-        },
-        "ajv-formats": {
-            "optional": true
-        },
-        "json-schema-typed": {
-            "optional": true
-        },
         "zod": {
-            "optional": true
+            "optional": false
         }
     },
     "devDependencies": {
@@ -60,10 +53,6 @@
         "@modelcontextprotocol/vitest-config": "workspace:^",
         "@modelcontextprotocol/eslint-config": "workspace:^",
         "@cfworker/json-schema": "catalog:runtimeShared",
-        "ajv": "catalog:runtimeShared",
-        "ajv-formats": "catalog:runtimeShared",
-        "json-schema-typed": "catalog:runtimeShared",
-        "zod": "catalog:runtimeShared",
         "@eslint/js": "catalog:devTools",
         "@types/content-type": "catalog:devTools",
         "@types/cors": "catalog:devTools",
