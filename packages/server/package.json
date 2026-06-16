@@ -59,9 +59,7 @@
         "server": "tsx watch --clear-screen=false scripts/cli.ts server",
         "client": "tsx scripts/cli.ts client"
     },
-    "dependencies": {
-        "zod": "catalog:runtimeShared"
-    },
+    "dependencies": {},
     "peerDependencies": {
         "@cfworker/json-schema": "catalog:runtimeShared",
         "zod": "catalog:runtimeShared"
@@ -71,11 +69,12 @@
             "optional": true
         },
         "zod": {
-            "optional": false
+            "optional": true
         }
     },
     "devDependencies": {
         "@cfworker/json-schema": "catalog:runtimeShared",
+        "zod": "catalog:runtimeShared",
         "@eslint/js": "catalog:devTools",
         "@modelcontextprotocol/core": "workspace:^",
         "@modelcontextprotocol/eslint-config": "workspace:^",
