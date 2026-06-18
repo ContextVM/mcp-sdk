@@ -1,6 +1,6 @@
 {
     "name": "@contextvm/mcp-sdk",
-    "version": "1.29.1",
+    "version": "1.29.2",
     "description": "Lightweight stdio-focused Model Context Protocol SDK for TypeScript",
     "license": "MIT",
     "author": "ContextVM",
@@ -171,6 +171,7 @@
     ],
     "scripts": {
         "fetch:spec-types": "tsx scripts/fetch-spec-types.ts",
+        "release": "npm run build && npm publish",
         "typecheck": "tsgo --noEmit",
         "build": "npm run build:esm && npm run build:cjs",
         "build:esm": "mkdir -p dist/esm && echo '{\"type\": \"module\"}' > dist/esm/package.json && tsc -p tsconfig.prod.json",
