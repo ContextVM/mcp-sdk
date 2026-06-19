@@ -78,21 +78,11 @@ export type ServerOptions = ProtocolOptions & {
      *
      * @example
      * ```typescript
-     * // ajv (default)
-     * const server = new Server(
-     *   { name: 'my-server', version: '1.0.0' },
-     *   {
-     *     capabilities: {}
-     *     jsonSchemaValidator: new AjvJsonSchemaValidator()
-     *   }
-     * );
-     *
-     * // @cfworker/json-schema
      * const server = new Server(
      *   { name: 'my-server', version: '1.0.0' },
      *   {
      *     capabilities: {},
-     *     jsonSchemaValidator: new CfWorkerJsonSchemaValidator()
+     *     jsonSchemaValidator: new AjvJsonSchemaValidator()
      *   }
      * );
      * ```

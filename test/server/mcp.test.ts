@@ -2177,10 +2177,12 @@ describe.each(zodTestMatrix)('$zodVersionLabel', (entry: ZodMatrixEntry) => {
                 required: ['directory_id']
             };
 
+            // Plain JSON Schema objects are not valid inputSchemas; cast through `never`
+            // to bypass overload resolution so we can assert the runtime rejection.
             expect(() =>
-                mcpServer.tool('bad-tool', 'Invalid schema test', jsonSchema as never, async () => ({
+                mcpServer.tool('bad-tool', 'Invalid schema test', jsonSchema as never, (async () => ({
                     content: [{ type: 'text', text: 'Should not register' }]
-                }))
+                })) as never)
             ).toThrow(/expected a Zod schema or ToolAnnotations|inputSchema must be a Zod schema or raw shape/);
         });
 

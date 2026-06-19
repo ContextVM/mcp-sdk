@@ -1,6 +1,6 @@
 {
     "name": "@contextvm/mcp-sdk",
-    "version": "1.29.2",
+    "version": "1.29.3",
     "description": "Lightweight stdio-focused Model Context Protocol SDK for TypeScript",
     "license": "MIT",
     "author": "ContextVM",
@@ -53,46 +53,6 @@
             "import": "./dist/esm/spec.types.js",
             "require": "./dist/cjs/spec.types.js"
         },
-        "./client": {
-            "types": "./dist/esm/client/index.d.ts",
-            "import": "./dist/esm/client/index.js",
-            "require": "./dist/cjs/client/index.js"
-        },
-        "./client/stdio": {
-            "types": "./dist/esm/client/stdio.d.ts",
-            "import": "./dist/esm/client/stdio.js",
-            "require": "./dist/cjs/client/stdio.js"
-        },
-        "./server": {
-            "types": "./dist/esm/server/index.d.ts",
-            "import": "./dist/esm/server/index.js",
-            "require": "./dist/cjs/server/index.js"
-        },
-        "./server/stdio": {
-            "types": "./dist/esm/server/stdio.d.ts",
-            "import": "./dist/esm/server/stdio.js",
-            "require": "./dist/cjs/server/stdio.js"
-        },
-        "./server/mcp": {
-            "types": "./dist/esm/server/mcp.d.ts",
-            "import": "./dist/esm/server/mcp.js",
-            "require": "./dist/cjs/server/mcp.js"
-        },
-        "./shared/transport": {
-            "types": "./dist/esm/shared/transport.d.ts",
-            "import": "./dist/esm/shared/transport.js",
-            "require": "./dist/cjs/shared/transport.js"
-        },
-        "./validation": {
-            "types": "./dist/esm/validation/index.d.ts",
-            "import": "./dist/esm/validation/index.js",
-            "require": "./dist/cjs/validation/index.js"
-        },
-        "./validation/ajv": {
-            "types": "./dist/esm/validation/ajv-provider.d.ts",
-            "import": "./dist/esm/validation/ajv-provider.js",
-            "require": "./dist/cjs/validation/ajv-provider.js"
-        },
         "./inMemory": {
             "types": "./dist/esm/inMemory.d.ts",
             "import": "./dist/esm/inMemory.js",
@@ -103,7 +63,132 @@
             "import": "./dist/esm/inMemory.js",
             "require": "./dist/cjs/inMemory.js"
         },
+        "./client": {
+            "types": "./dist/esm/client/index.d.ts",
+            "import": "./dist/esm/client/index.js",
+            "require": "./dist/cjs/client/index.js"
+        },
+        "./client.js": {
+            "types": "./dist/esm/client/index.d.ts",
+            "import": "./dist/esm/client/index.js",
+            "require": "./dist/cjs/client/index.js"
+        },
+        "./client/stdio": {
+            "types": "./dist/esm/client/stdio.d.ts",
+            "import": "./dist/esm/client/stdio.js",
+            "require": "./dist/cjs/client/stdio.js"
+        },
+        "./client/stdio.js": {
+            "types": "./dist/esm/client/stdio.d.ts",
+            "import": "./dist/esm/client/stdio.js",
+            "require": "./dist/cjs/client/stdio.js"
+        },
+        "./server": {
+            "types": "./dist/esm/server/index.d.ts",
+            "import": "./dist/esm/server/index.js",
+            "require": "./dist/cjs/server/index.js"
+        },
+        "./server.js": {
+            "types": "./dist/esm/server/index.d.ts",
+            "import": "./dist/esm/server/index.js",
+            "require": "./dist/cjs/server/index.js"
+        },
+        "./server/stdio": {
+            "types": "./dist/esm/server/stdio.d.ts",
+            "import": "./dist/esm/server/stdio.js",
+            "require": "./dist/cjs/server/stdio.js"
+        },
+        "./server/stdio.js": {
+            "types": "./dist/esm/server/stdio.d.ts",
+            "import": "./dist/esm/server/stdio.js",
+            "require": "./dist/cjs/server/stdio.js"
+        },
+        "./server/mcp": {
+            "types": "./dist/esm/server/mcp.d.ts",
+            "import": "./dist/esm/server/mcp.js",
+            "require": "./dist/cjs/server/mcp.js"
+        },
+        "./server/mcp.js": {
+            "types": "./dist/esm/server/mcp.d.ts",
+            "import": "./dist/esm/server/mcp.js",
+            "require": "./dist/cjs/server/mcp.js"
+        },
+        "./shared/protocol": {
+            "types": "./dist/esm/shared/protocol.d.ts",
+            "import": "./dist/esm/shared/protocol.js",
+            "require": "./dist/cjs/shared/protocol.js"
+        },
+        "./shared/protocol.js": {
+            "types": "./dist/esm/shared/protocol.d.ts",
+            "import": "./dist/esm/shared/protocol.js",
+            "require": "./dist/cjs/shared/protocol.js"
+        },
+        "./shared/transport": {
+            "types": "./dist/esm/shared/transport.d.ts",
+            "import": "./dist/esm/shared/transport.js",
+            "require": "./dist/cjs/shared/transport.js"
+        },
+        "./shared/transport.js": {
+            "types": "./dist/esm/shared/transport.d.ts",
+            "import": "./dist/esm/shared/transport.js",
+            "require": "./dist/cjs/shared/transport.js"
+        },
+        "./shared/uriTemplate": {
+            "types": "./dist/esm/shared/uriTemplate.d.ts",
+            "import": "./dist/esm/shared/uriTemplate.js",
+            "require": "./dist/cjs/shared/uriTemplate.js"
+        },
+        "./shared/uriTemplate.js": {
+            "types": "./dist/esm/shared/uriTemplate.d.ts",
+            "import": "./dist/esm/shared/uriTemplate.js",
+            "require": "./dist/cjs/shared/uriTemplate.js"
+        },
+        "./shared/auth-info": {
+            "types": "./dist/esm/shared/auth-info.d.ts",
+            "import": "./dist/esm/shared/auth-info.js",
+            "require": "./dist/cjs/shared/auth-info.js"
+        },
+        "./shared/auth-info.js": {
+            "types": "./dist/esm/shared/auth-info.d.ts",
+            "import": "./dist/esm/shared/auth-info.js",
+            "require": "./dist/cjs/shared/auth-info.js"
+        },
+        "./shared/stdio": {
+            "types": "./dist/esm/shared/stdio.d.ts",
+            "import": "./dist/esm/shared/stdio.js",
+            "require": "./dist/cjs/shared/stdio.js"
+        },
+        "./shared/stdio.js": {
+            "types": "./dist/esm/shared/stdio.d.ts",
+            "import": "./dist/esm/shared/stdio.js",
+            "require": "./dist/cjs/shared/stdio.js"
+        },
+        "./validation": {
+            "types": "./dist/esm/validation/index.d.ts",
+            "import": "./dist/esm/validation/index.js",
+            "require": "./dist/cjs/validation/index.js"
+        },
+        "./validation.js": {
+            "types": "./dist/esm/validation/index.d.ts",
+            "import": "./dist/esm/validation/index.js",
+            "require": "./dist/cjs/validation/index.js"
+        },
+        "./validation/ajv": {
+            "types": "./dist/esm/validation/ajv-provider.d.ts",
+            "import": "./dist/esm/validation/ajv-provider.js",
+            "require": "./dist/cjs/validation/ajv-provider.js"
+        },
+        "./validation/ajv.js": {
+            "types": "./dist/esm/validation/ajv-provider.d.ts",
+            "import": "./dist/esm/validation/ajv-provider.js",
+            "require": "./dist/cjs/validation/ajv-provider.js"
+        },
         "./experimental": {
+            "types": "./dist/esm/experimental/index.d.ts",
+            "import": "./dist/esm/experimental/index.js",
+            "require": "./dist/cjs/experimental/index.js"
+        },
+        "./experimental.js": {
             "types": "./dist/esm/experimental/index.d.ts",
             "import": "./dist/esm/experimental/index.js",
             "require": "./dist/cjs/experimental/index.js"
@@ -112,6 +197,16 @@
             "types": "./dist/esm/experimental/tasks/index.d.ts",
             "import": "./dist/esm/experimental/tasks/index.js",
             "require": "./dist/cjs/experimental/tasks/index.js"
+        },
+        "./experimental/tasks.js": {
+            "types": "./dist/esm/experimental/tasks/index.d.ts",
+            "import": "./dist/esm/experimental/tasks/index.js",
+            "require": "./dist/cjs/experimental/tasks/index.js"
+        },
+        "./*": {
+            "types": "./dist/esm/*.d.ts",
+            "import": "./dist/esm/*",
+            "require": "./dist/cjs/*"
         }
     },
     "typesVersions": {
@@ -128,41 +223,98 @@
             "spec.types.js": [
                 "./dist/esm/spec.types.d.ts"
             ],
-            "client": [
-                "./dist/esm/client/index.d.ts"
-            ],
-            "client/stdio": [
-                "./dist/esm/client/stdio.d.ts"
-            ],
-            "server": [
-                "./dist/esm/server/index.d.ts"
-            ],
-            "server/stdio": [
-                "./dist/esm/server/stdio.d.ts"
-            ],
-            "server/mcp": [
-                "./dist/esm/server/mcp.d.ts"
-            ],
-            "shared/transport": [
-                "./dist/esm/shared/transport.d.ts"
-            ],
-            "validation": [
-                "./dist/esm/validation/index.d.ts"
-            ],
-            "validation/ajv": [
-                "./dist/esm/validation/ajv-provider.d.ts"
-            ],
             "inMemory": [
                 "./dist/esm/inMemory.d.ts"
             ],
             "inMemory.js": [
                 "./dist/esm/inMemory.d.ts"
             ],
+            "client": [
+                "./dist/esm/client/index.d.ts"
+            ],
+            "client.js": [
+                "./dist/esm/client/index.d.ts"
+            ],
+            "client/stdio": [
+                "./dist/esm/client/stdio.d.ts"
+            ],
+            "client/stdio.js": [
+                "./dist/esm/client/stdio.d.ts"
+            ],
+            "server": [
+                "./dist/esm/server/index.d.ts"
+            ],
+            "server.js": [
+                "./dist/esm/server/index.d.ts"
+            ],
+            "server/stdio": [
+                "./dist/esm/server/stdio.d.ts"
+            ],
+            "server/stdio.js": [
+                "./dist/esm/server/stdio.d.ts"
+            ],
+            "server/mcp": [
+                "./dist/esm/server/mcp.d.ts"
+            ],
+            "server/mcp.js": [
+                "./dist/esm/server/mcp.d.ts"
+            ],
+            "shared/protocol": [
+                "./dist/esm/shared/protocol.d.ts"
+            ],
+            "shared/protocol.js": [
+                "./dist/esm/shared/protocol.d.ts"
+            ],
+            "shared/transport": [
+                "./dist/esm/shared/transport.d.ts"
+            ],
+            "shared/transport.js": [
+                "./dist/esm/shared/transport.d.ts"
+            ],
+            "shared/uriTemplate": [
+                "./dist/esm/shared/uriTemplate.d.ts"
+            ],
+            "shared/uriTemplate.js": [
+                "./dist/esm/shared/uriTemplate.d.ts"
+            ],
+            "shared/auth-info": [
+                "./dist/esm/shared/auth-info.d.ts"
+            ],
+            "shared/auth-info.js": [
+                "./dist/esm/shared/auth-info.d.ts"
+            ],
+            "shared/stdio": [
+                "./dist/esm/shared/stdio.d.ts"
+            ],
+            "shared/stdio.js": [
+                "./dist/esm/shared/stdio.d.ts"
+            ],
+            "validation": [
+                "./dist/esm/validation/index.d.ts"
+            ],
+            "validation.js": [
+                "./dist/esm/validation/index.d.ts"
+            ],
+            "validation/ajv": [
+                "./dist/esm/validation/ajv-provider.d.ts"
+            ],
+            "validation/ajv.js": [
+                "./dist/esm/validation/ajv-provider.d.ts"
+            ],
             "experimental": [
+                "./dist/esm/experimental/index.d.ts"
+            ],
+            "experimental.js": [
                 "./dist/esm/experimental/index.d.ts"
             ],
             "experimental/tasks": [
                 "./dist/esm/experimental/tasks/index.d.ts"
+            ],
+            "experimental/tasks.js": [
+                "./dist/esm/experimental/tasks/index.d.ts"
+            ],
+            "*": [
+                "./dist/esm/*"
             ]
         }
     },
@@ -186,30 +338,21 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "cross-spawn": "^7.0.5"
-    },
-    "peerDependencies": {
         "ajv": "^8.17.1",
         "ajv-formats": "^3.0.1",
+        "cross-spawn": "^7.0.5",
         "zod": "^3.25 || ^4.0",
         "zod-to-json-schema": "^3.25.1"
     },
+    "peerDependencies": {
+        "zod": "^3.25 || ^4.0"
+    },
     "peerDependenciesMeta": {
-        "ajv": {
-            "optional": true
-        },
-        "ajv-formats": {
-            "optional": true
-        },
         "zod": {
-            "optional": true
-        },
-        "zod-to-json-schema": {
-            "optional": true
+            "optional": false
         }
     },
     "devDependencies": {
-        "@cfworker/json-schema": "^4.1.1",
         "@eslint/js": "^9.39.1",
         "@types/cross-spawn": "^6.0.6",
         "@types/node": "^22.12.0",

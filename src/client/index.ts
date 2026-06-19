@@ -156,21 +156,11 @@ export type ClientOptions = ProtocolOptions & {
      *
      * @example
      * ```typescript
-     * // ajv
      * const client = new Client(
      *   { name: 'my-client', version: '1.0.0' },
      *   {
      *     capabilities: {},
      *     jsonSchemaValidator: new AjvJsonSchemaValidator()
-     *   }
-     * );
-     *
-     * // @cfworker/json-schema
-     * const client = new Client(
-     *   { name: 'my-client', version: '1.0.0' },
-     *   {
-     *     capabilities: {},
-     *     jsonSchemaValidator: new CfWorkerJsonSchemaValidator()
      *   }
      * );
      * ```

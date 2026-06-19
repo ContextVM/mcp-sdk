@@ -11,11 +11,9 @@ import { Client } from '../../src/client/index.js';
 import { InMemoryTransport } from '../../src/inMemory.js';
 import { ElicitRequestFormParams, ElicitRequestSchema } from '../../src/types.js';
 import { AjvJsonSchemaValidator } from '../../src/validation/ajv-provider.js';
-import { CfWorkerJsonSchemaValidator } from '../../src/validation/cfworker-provider.js';
 import { Server } from '../../src/server/index.js';
 
 const ajvProvider = new AjvJsonSchemaValidator();
-const cfWorkerProvider = new CfWorkerJsonSchemaValidator();
 
 let server: Server;
 let client: Client;
@@ -40,29 +38,9 @@ describe('Elicitation Flow', () => {
 
         testElicitationFlow(ajvProvider, 'AJV');
     });
-
-    describe('with CfWorker validator', () => {
-        beforeEach(async () => {
-            server = new Server(
-                { name: 'test-server', version: '1.0.0' },
-                {
-                    capabilities: {},
-                    jsonSchemaValidator: cfWorkerProvider
-                }
-            );
-
-            client = new Client({ name: 'test-client', version: '1.0.0' }, { capabilities: { elicitation: {} } });
-
-            const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
-
-            await Promise.all([client.connect(clientTransport), server.connect(serverTransport)]);
-        });
-
-        testElicitationFlow(cfWorkerProvider, 'CfWorker');
-    });
 });
 
-function testElicitationFlow(validatorProvider: typeof ajvProvider | typeof cfWorkerProvider, validatorName: string) {
+function testElicitationFlow(validatorProvider: typeof ajvProvider, validatorName: string) {
     test(`${validatorName}: should elicit simple object with string field`, async () => {
         client.setRequestHandler(ElicitRequestSchema, _request => ({
             action: 'accept',
