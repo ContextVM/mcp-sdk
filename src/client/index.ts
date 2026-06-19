@@ -51,7 +51,6 @@ import {
     type Notification,
     type Result
 } from '../types.js';
-import { AjvJsonSchemaValidator } from '../validation/ajv-provider.js';
 import type { JsonSchemaType, JsonSchemaValidator, jsonSchemaValidator } from '../validation/types.js';
 import {
     AnyObjectSchema,
@@ -152,7 +151,11 @@ export type ClientOptions = ProtocolOptions & {
      * The validator is used to validate structured content returned by tools
      * against their declared output schemas.
      *
-     * @default AjvJsonSchemaValidator
+     * When omitted, tool output is returned without validation. Import
+     * `AjvJsonSchemaValidator` from `@contextvm/mcp-sdk/validation/ajv` to enable
+     * validation.
+     *
+     * @default undefined (validation disabled)
      *
      * @example
      * ```typescript
@@ -230,7 +233,7 @@ export class Client<
     private _serverVersion?: Implementation;
     private _capabilities: ClientCapabilities;
     private _instructions?: string;
-    private _jsonSchemaValidator: jsonSchemaValidator;
+    private _jsonSchemaValidator?: jsonSchemaValidator;
     private _cachedToolOutputValidators: Map<string, JsonSchemaValidator<unknown>> = new Map();
     private _cachedKnownTaskTools: Set<string> = new Set();
     private _cachedRequiredTaskTools: Set<string> = new Set();
@@ -247,7 +250,10 @@ export class Client<
     ) {
         super(options);
         this._capabilities = options?.capabilities ?? {};
-        this._jsonSchemaValidator = options?.jsonSchemaValidator ?? new AjvJsonSchemaValidator();
+        // Validation is opt-in: when no `jsonSchemaValidator` is provided, tool output
+        // and elicitation responses are NOT validated. Pass `new AjvJsonSchemaValidator()`
+        // (imported from `@contextvm/mcp-sdk/validation/ajv`) to enable validation.
+        this._jsonSchemaValidator = options?.jsonSchemaValidator;
 
         // Store list changed config for setup after connection (when we know server capabilities)
         if (options?.listChanged) {
@@ -799,8 +805,8 @@ export class Client<
         this._cachedRequiredTaskTools.clear();
 
         for (const tool of tools) {
-            // If the tool has an outputSchema, create and cache the validator
-            if (tool.outputSchema) {
+            // If the tool has an outputSchema and a validator is configured, create and cache the validator
+            if (tool.outputSchema && this._jsonSchemaValidator) {
                 const toolValidator = this._jsonSchemaValidator.getValidator(tool.outputSchema as JsonSchemaType);
                 this._cachedToolOutputValidators.set(tool.name, toolValidator);
             }

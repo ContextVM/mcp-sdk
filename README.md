@@ -98,6 +98,24 @@ The SDK includes higher-level capabilities for richer workflows:
 - **URL elicitation**: servers can ask users to complete secure flows in a browser (e.g., API key entry, payments, OAuth).
 - **Tasks (experimental)**: long-running tool calls can be turned into tasks that you poll or resume later.
 
+### JSON Schema validation (opt-in)
+
+Tool `outputSchema` validation (on the client) and elicitation response validation (on the server) are **opt-in**. By default the SDK does not bundle a JSON Schema validator, so these responses are returned without validation.
+
+To enable validation, import [`AjvJsonSchemaValidator`](src/validation/ajv-provider.ts:27) from the dedicated subpath and pass it to the client and/or server:
+
+```typescript
+import { Client } from '@contextvm/mcp-sdk/client';
+import { AjvJsonSchemaValidator } from '@contextvm/mcp-sdk/validation/ajv';
+
+const client = new Client(
+    { name: 'my-client', version: '1.0.0' },
+    { jsonSchemaValidator: new AjvJsonSchemaValidator() }
+);
+```
+
+Keeping validation opt-in means the [`ajv`](package.json) runtime is only loaded when you actually import the validator — consumers that don't need output validation ship a smaller bundle. Note that [`McpServer`](src/server/mcp.ts:72) still validates its own tool inputs/outputs against their Zod schemas directly (via Zod), independent of this optional JSON Schema validator.
+
 These higher-level capabilities are preserved in the stdio-focused fork.
 
 ### Clients

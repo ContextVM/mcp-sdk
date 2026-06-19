@@ -3,7 +3,10 @@
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
-        "outDir": "./dist/cjs"
+        "outDir": "./dist/cjs",
+        "declaration": false,
+        "declarationMap": false,
+        "sourceMap": false
     },
     "include": ["src/**/*"],
     "exclude": ["**/*.test.ts", "src/__mocks__/**/*", "src/__fixtures__/**/*"]

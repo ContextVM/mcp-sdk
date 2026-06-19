@@ -38,6 +38,45 @@ describe('Elicitation Flow', () => {
 
         testElicitationFlow(ajvProvider, 'AJV');
     });
+
+    describe('without validator (opt-out)', () => {
+        beforeEach(async () => {
+            // No jsonSchemaValidator provided: validation is opt-in as of the lightweighting work.
+            server = new Server({ name: 'test-server', version: '1.0.0' }, { capabilities: {} });
+            client = new Client({ name: 'test-client', version: '1.0.0' }, { capabilities: { elicitation: {} } });
+
+            const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+            await Promise.all([client.connect(clientTransport), server.connect(serverTransport)]);
+        });
+
+        test('accepts invalid elicitation content without throwing', async () => {
+            // Content is missing the required `name` field and has a wrong type for `age`.
+            client.setRequestHandler(ElicitRequestSchema, _request => ({
+                action: 'accept',
+                content: {
+                    email: 'user@example.com',
+                    age: 'thirty'
+                }
+            }));
+
+            // With no validator configured, the server returns the content as-is instead of rejecting it.
+            const result = await server.elicitInput({
+                mode: 'form',
+                message: 'Please provide your information',
+                requestedSchema: {
+                    type: 'object',
+                    properties: {
+                        name: { type: 'string' },
+                        age: { type: 'integer' }
+                    },
+                    required: ['name', 'age']
+                }
+            });
+
+            expect(result.action).toBe('accept');
+            expect(result.content).toEqual({ email: 'user@example.com', age: 'thirty' });
+        });
+    });
 });
 
 function testElicitationFlow(validatorProvider: typeof ajvProvider, validatorName: string) {

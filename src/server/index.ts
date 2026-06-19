@@ -42,7 +42,6 @@ import {
     type Notification,
     type Result
 } from '../types.js';
-import { AjvJsonSchemaValidator } from '../validation/ajv-provider.js';
 import type { JsonSchemaType, jsonSchemaValidator } from '../validation/types.js';
 import {
     AnyObjectSchema,
@@ -74,7 +73,11 @@ export type ServerOptions = ProtocolOptions & {
      * The validator is used to validate user input returned from elicitation
      * requests against the requested schema.
      *
-     * @default AjvJsonSchemaValidator
+     * When omitted, elicitation responses are returned without validation. Import
+     * `AjvJsonSchemaValidator` from `@contextvm/mcp-sdk/validation/ajv` to enable
+     * validation.
+     *
+     * @default undefined (validation disabled)
      *
      * @example
      * ```typescript
@@ -125,7 +128,7 @@ export class Server<
     private _clientVersion?: Implementation;
     private _capabilities: ServerCapabilities;
     private _instructions?: string;
-    private _jsonSchemaValidator: jsonSchemaValidator;
+    private _jsonSchemaValidator?: jsonSchemaValidator;
     private _experimental?: { tasks: ExperimentalServerTasks<RequestT, NotificationT, ResultT> };
 
     /**
@@ -143,7 +146,10 @@ export class Server<
         super(options);
         this._capabilities = options?.capabilities ?? {};
         this._instructions = options?.instructions;
-        this._jsonSchemaValidator = options?.jsonSchemaValidator ?? new AjvJsonSchemaValidator();
+        // Validation is opt-in: when no `jsonSchemaValidator` is provided, elicitation
+        // responses are NOT validated. Pass `new AjvJsonSchemaValidator()` (imported from
+        // `@contextvm/mcp-sdk/validation/ajv`) to enable validation.
+        this._jsonSchemaValidator = options?.jsonSchemaValidator;
 
         this.setRequestHandler(InitializeRequestSchema, request => this._oninitialize(request));
         this.setNotificationHandler(InitializedNotificationSchema, () => this.oninitialized?.());
@@ -567,6 +573,10 @@ export class Server<
                 const result = await this.request({ method: 'elicitation/create', params: formParams }, ElicitResultSchema, options);
 
                 if (result.action === 'accept' && result.content && formParams.requestedSchema) {
+                    if (!this._jsonSchemaValidator) {
+                        // No validator configured; skip validation and return the result as-is.
+                        return result;
+                    }
                     try {
                         const validator = this._jsonSchemaValidator.getValidator(formParams.requestedSchema as JsonSchemaType);
                         const validationResult = validator(result.content);

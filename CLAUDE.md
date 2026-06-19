@@ -77,10 +77,11 @@ The SDK uses `zod/v4` internally but supports both v3 and v4 APIs. Compatibility
 
 ### Validation
 
-Pluggable JSON Schema validation (`src/validation/`):
+Pluggable, opt-in JSON Schema validation (`src/validation/`):
 
-- `ajv-provider.ts` - Default Ajv-based validator
-- `cfworker-provider.ts` - Cloudflare Workers-compatible alternative
+- `ajv-provider.ts` - Ajv-based validator (import from `@contextvm/mcp-sdk/validation/ajv`)
+
+Validation is opt-in: `Client` and `Server` do not instantiate a validator by default. Pass `jsonSchemaValidator: new AjvJsonSchemaValidator()` to enable tool-output / elicitation-response validation. `McpServer` validates its own tool inputs/outputs via Zod directly, independent of this optional validator.
 
 ### Examples
 
