@@ -1,45 +1,23 @@
-name: Release
-
-permissions:
-    contents: write
-    pull-requests: write
-
+name: Publish ContextVM SDK
 on:
-    push:
-        branches:
-            - main
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
+    workflow_dispatch:
+permissions:
+    contents: read
 jobs:
-    release:
-        name: Release
+    publish:
+        if: github.repository == 'ContextVM/mcp-sdk' && github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
+        environment: release
         steps:
-            - uses: actions/checkout@v6
-
-            - name: Install pnpm
-              uses: pnpm/action-setup@v4
-              with:
-                  run_install: false
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: 24
-                  cache: pnpm
-                  cache-dependency-path: pnpm-lock.yaml
-                  registry-url: 'https://registry.npmjs.org'
-
-            - name: Install dependencies
-              run: pnpm install
-
-            - name: Create Release Pull Request or Publish to npm
-              id: changesets
-              uses: changesets/action@v1
-              with:
-                  publish: pnpm run build:all && pnpm changeset publish
+                  registry-url: https://registry.npmjs.org
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm build:all
+            - run: pnpm check:all
+            - run: pnpm --filter @contextvm/mcp-sdk publish --access public --no-git-checks
               env:
-                  GITHUB_TOKEN: ${{ github.token }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

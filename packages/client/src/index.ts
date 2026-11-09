@@ -1,15 +1,10 @@
-export * from './client/auth.js';
-export * from './client/authExtensions.js';
-export * from './client/client.js';
-export * from './client/crossAppAccess.js';
-export * from './client/middleware.js';
-export * from './client/sse.js';
-export * from './client/stdio.js';
-export * from './client/streamableHttp.js';
-export * from './client/websocket.js';
-
-// experimental exports
-export * from './experimental/index.js';
-
-// re-export shared types
-export * from '@modelcontextprotocol/core';
+export type { ClientOptions, ConnectOptions, McpSubscription } from './client/client';
+export { Client, getSupportedElicitationModes } from './client/client';
+export type { PriorDiscovery } from './client/probeClassifier';
+export type { CacheEntry, CacheKey, CacheMode, CacheScope, ResponseCacheStore } from './client/responseCache';
+export { InMemoryResponseCacheStore, MAX_CACHE_TTL_MS } from './client/responseCache';
+export type { VersionNegotiationMode, VersionNegotiationOptions, VersionNegotiationProbeOptions } from './client/versionNegotiation';
+export { fromJsonSchema } from './fromJsonSchema';
+export type { InputRequiredOptions } from '@modelcontextprotocol/core-internal';
+export { withInputRequired, preloadSchemas } from '@modelcontextprotocol/core-internal';
+export * from '@modelcontextprotocol/core-internal/public';
